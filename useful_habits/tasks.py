@@ -2,18 +2,38 @@ import logging
 
 from celery import shared_task
 
-
+import json
+from datetime import datetime, timedelta
 from celery.worker.state import requests
 from django.conf import settings
+from django_celery_beat.models import PeriodicTask, IntervalSchedule
 
 from useful_habits.models import UsefulHabit
 from users.models import User
 
+# schedule, created = IntervalSchedule.objects.get_or_create(
+#      every=10,
+#      period=IntervalSchedule.SECONDS,
+#  )
+#
+# PeriodicTask.objects.create(
+#      interval=schedule,
+#      name='Importing contacts',
+#      task='useful_habits.tasks.request_telegram_names',
+#      expires=datetime.utcnow() + timedelta(seconds=30)
+#  )
+#
+# PeriodicTask.objects.create(
+#      interval=schedule,
+#      name='Importing contacts',
+#      task='useful_habits.tasks.request_telegram_names',
+#      expires=datetime.utcnow() + timedelta(seconds=30)
+#  )
 
 @shared_task
 def request_telegram_names():
     """ Scanning the telegram bot and associate usernames with chat_id"""
-    telegram_users = User.objects.filter(chat_id=None)
+    telegram_users = User.objects.all()
     url = f"https://api.telegram.org/bot{settings.TELEGRAM_BOT_API_KEY}/getUpdates"
     response = requests.get(url)
     updated_data = response.json()['result']

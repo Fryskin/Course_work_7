@@ -13,3 +13,4 @@ How to launch Project:
 2. Perform "sudo apt-get update" and then "sudo apt-get install redis".
 3. Perform "sudo service redis-server start".
 4. Perform in the terminal "python manage.py runserver"
+5. Perform celery -A config worker -l INFO.
