@@ -12,5 +12,6 @@ How to launch Project:
 1. Open Ubuntu and perform "curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg ".
 2. Perform "sudo apt-get update" and then "sudo apt-get install redis".
 3. Perform "sudo service redis-server start".
-4. Perform in the terminal "python manage.py runserver"
-5. Perform celery -A config worker -l INFO.
+4. Perform in the terminal "python manage.py runserver".
+5. Perform 'celery -A config worker -l INFO'.
+6. Perform 'celery -A config worker -P eventlet'.
