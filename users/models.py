@@ -1,4 +1,3 @@
-
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
@@ -16,3 +15,11 @@ class User(AbstractUser):
     chat_id = models.CharField(max_length=1000, verbose_name='chat id',  **NULLABLE)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+
+    def __str__(self):
+        return f'User {self.email}'
+
+    class Meta:
+        verbose_name = 'user'
+        verbose_name_plural = 'users'
+        ordering = ('email',)
