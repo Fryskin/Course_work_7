@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'djoser',
+
     'drf_yasg',
     'corsheaders',
     'rest_framework',
@@ -51,8 +53,6 @@ INSTALLED_APPS = [
 
     'useful_habits.apps.UsefulHabitsConfig',
     'users.apps.UsersConfig',
-
-
 
 ]
 
@@ -160,7 +160,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),                                         #####################!!!!!!!!!!!!!!!!!!!!!!!!!change the life time
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=3),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
 
@@ -175,26 +175,26 @@ CSRF_TRUSTED_ORIGINS = [
 
 CORS_ALLOW_ALL_ORIGINS = False
 
-CACHE_ENABLED = True
+CACHE_ENABLED = os.getenv('CACHE_ENABLED')
 if CACHE_ENABLED:
     CACHES = {
         "default": {
-            "BACKEND": "django.core.cache.backends.redis.RedisCache",
-            "LOCATION": "redis://127.0.0.1:6379",
-            "TIMEOUT": 300
+            "BACKEND": os.getenv('CACHES_BACKEND'),
+            "LOCATION": os.getenv('CACHES_LOCATION'),
+            "TIMEOUT": os.getenv('CACHES_TIMEOUT')
         }
     }
 
 
-CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')
 
 
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND')
 
 
-CELERY_TIMEZONE = "Australia/Tasmania"
+CELERY_TIMEZONE = os.getenv('CELERY_TIMEZONE')
 
-CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TRACK_STARTED = os.getenv('CELERY_TASK_TRACK_STARTED')
 
 CELERY_TASK_TIME_LIMIT = 30 * 60
 
@@ -215,4 +215,3 @@ CELERY_BEAT_SCHEDULE = {
 
 # Telegram-Bot's config
 TELEGRAM_BOT_API_KEY = os.getenv('TELEGRAM_BOT_API_KEY')
-

@@ -28,5 +28,3 @@ class Command(BaseCommand):
                   f"?chat_id={useful_habit.owner.chat_id}&text={message}"
             response = requests.get(url)
             logging.info(f"API response is: {response.status_code}")
-
-

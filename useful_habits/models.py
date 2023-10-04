@@ -2,7 +2,7 @@
 import datetime
 from django.db import models
 from django.conf import settings
-from django.utils import timezone
+
 
 NULLABLE = {'blank': True, 'null': True}
 

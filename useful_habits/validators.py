@@ -72,4 +72,3 @@ class PeriodicityInHoursValidation:
         if tmp_val is not None:
             if tmp_val > 168:
                 raise ValidationError('You cannot perform the habit less than once every 7 days.')
-

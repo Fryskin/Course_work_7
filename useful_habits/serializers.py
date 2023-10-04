@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from useful_habits.models import UsefulHabit
-from useful_habits.validators import TimeToCompleteValidation, AssociatedHabitValidation,\
+from useful_habits.validators import TimeToCompleteValidation, AssociatedHabitValidation, \
     RewardAndAssociatedValidation, PleasantValidation, PeriodicityInHoursValidation
 
 
