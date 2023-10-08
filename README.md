@@ -15,3 +15,8 @@ How to launch Project:
 4. Perform in the terminal "python manage.py runserver".
 5. Perform 'celery -A config worker -l INFO'.
 6. Perform 'celery -A config worker -P eventlet'.
+
+
+How to use Docker img:
+1. Input all env variables into .env.
+2. Perform 'docker run useful-habits'.
